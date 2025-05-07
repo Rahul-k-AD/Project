@@ -1,5 +1,6 @@
 // controllers/adminController.js
 const db = require('../config/db');
+const router = require('express').Router();
 
 // Assign subject to student
 const assignSubject = async (req, res) => {
@@ -22,6 +23,9 @@ const assignSubject = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+
+
 
 // Home route for admin
 const getHome = (req, res) => {
