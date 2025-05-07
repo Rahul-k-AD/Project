@@ -7,8 +7,8 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000; // crating express app and setting port
-const authRoutes = require('./routes/auth'); // importing the auth routes
-const adminRoutes = require('./routes/admin'); // importing the admin routes
+const authRoutes = require('./routes/authRoutes'); // importing the auth routes
+const adminRoutes = require('./routes/adminRoutes'); // importing the admin routes
 
 
 app.use(cors());  //allowing API access from different domains/ports (like frontend runs on localhost 3000) allowing it to call this api
