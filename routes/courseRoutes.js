@@ -7,4 +7,5 @@ const checkRole = require('../middlewares/checkRole');
 // Only admins can access this route
 router.post('/create-course', verifyToken, checkRole('admin'), createCourse);
 
+
 module.exports = router;

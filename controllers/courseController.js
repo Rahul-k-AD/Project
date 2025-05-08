@@ -20,6 +20,36 @@ const createCourse = async (req, res) => {
     }
 };
 
+const assignCourseToStudent = async (req, res) => {
+    const { student_id, course_code, subject_code, semester, type } = req.body;
+
+    if (!student_id || !course_code || !subject_code || !semester) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    try {
+        // You could validate the course_code or student_id here if needed
+
+        const [result] = await db.query(
+            `INSERT INTO courses_assigned 
+             (student_id, course_code, subject_code, semester, type)
+             VALUES (?, ?, ?, ?, ?)`,
+            [student_id, course_code, subject_code, semester, type || 'regular']
+        );
+
+        res.status(201).json({ message: 'Course assigned', id: result.insertId });
+    } catch (error) {
+        console.error('DB Error:', error.message);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 module.exports = {
-    createCourse
+    createCourse,
+    assignCourseToStudent
+};
+
+module.exports = {
+    createCourse,
+    assignCourseToStudent
 };
